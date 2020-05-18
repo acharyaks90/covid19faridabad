@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from 'app/dashboard/dashboard.service';
+
 
 @Component({
   selector: 'app-table-list',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableListComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dashBoardService : DashboardService) { }
 
   ngOnInit() {
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import { HttpClient } from '@angular/common/http';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,8 @@ export class DashboardComponent implements OnInit {
   active = 0;
   confirmed = 0;
   deceased = 0;
-  constructor(private httpReq : HttpClient  ) { }
+  lastUpdate = 0;
+  constructor( public dashBoardService : DashboardService  ) { }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -151,21 +153,9 @@ export class DashboardComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
 
-      this.getCovidData();
+      this.dashBoardService.getCovidData();
   }
 
-  getCovidData(){
-    this.httpReq.get('https://api.covid19india.org/state_district_wise.json')
-    .subscribe((res:any)=>{
-      
-      let data = res.Haryana.districtData.Faridabad;
-      this.active = data.active;
-      this.recovered = data.recovered;
-      this.confirmed = data.confirmed;
-      this.deceased = data.deceased;
-    },err=>{
-
-    })
-  }
+ 
 
 }

@@ -28,22 +28,23 @@
                                   </th>
                               </thead>
                               <tbody>
-                                  <tr>
+                                  <tr *ngFor="let case of dashBoardService.fbd_data">
+                                     
                                       <td>
-                                         
+                                          {{case.date}}
                                       </td>
                                       <td>
-                                          Dakota Rice
+                                        {{case.active}}
                                       </td>
                                       <td>
-                                          Niger
-                                      </td>
-                                      <td>
-                                          Oud-Turnhout
+                                        {{case.confirmed}}
                                       </td>
                                       <td class="text-primary">
-                                          $36,738
+                                        {{case.deceased}}
                                       </td>
+                                      <td>
+                                         {{case.recovered}}
+                                    </td>
                                   </tr>
                               
                                 

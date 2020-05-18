@@ -8,14 +8,13 @@
                           <i class="material-icons">content_copy</i>
                       </div>
                       <p class="card-category">Active Case</p>
-                      <h3 class="card-title">{{active}}
+                      <h3 class="card-title">{{dashBoardService.active}}
                       </h3>
                   </div>
                   <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons text-danger">warning</i>
-                          <a href="javascript:void(0)">Get More Space...</a>
-                      </div>
+                    <div class="stats">
+                        <i class="material-icons">date_range</i> {{dashBoardService.lastUpdate}}
+                    </div>
                   </div>
               </div>
           </div>
@@ -26,11 +25,11 @@
                           <i class="material-icons">store</i>
                       </div>
                       <p class="card-category">Recovered</p>
-                      <h3 class="card-title">{{recovered}}</h3>
+                      <h3 class="card-title">{{dashBoardService.recovered}}</h3>
                   </div>
                   <div class="card-footer">
                       <div class="stats">
-                          <i class="material-icons">date_range</i> Last 24 Hours
+                          <i class="material-icons">date_range</i> {{dashBoardService.lastUpdate}}
                       </div>
                   </div>
               </div>
@@ -42,12 +41,12 @@
                           <i class="material-icons">info_outline</i>
                       </div>
                       <p class="card-category">Death</p>
-                      <h3 class="card-title">{{deceased}}</h3>
+                      <h3 class="card-title">{{dashBoardService.deceased}}</h3>
                   </div>
                   <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">local_offer</i> Tracked from Github
-                      </div>
+                    <div class="stats">
+                        <i class="material-icons">date_range</i> {{dashBoardService.lastUpdate}}
+                    </div>
                   </div>
               </div>
           </div>
@@ -55,15 +54,17 @@
               <div class="card card-stats">
                   <div class="card-header card-header-info card-header-icon">
                       <div class="card-icon">
-                          <i class="fa fa-twitter"></i>
+                        <span class="material-icons">
+                            bug_report
+                            </span>
                       </div>
-                      <p class="card-category">Migrated</p>
-                      <h3 class="card-title">0</h3>
+                      <p class="card-category">Confirmed</p>
+                      <h3 class="card-title">{{dashBoardService.confirmed}}</h3>
                   </div>
                   <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">update</i> Just Updated
-                      </div>
+                    <div class="stats">
+                        <i class="material-icons">date_range</i> {{dashBoardService.lastUpdate}}
+                    </div>
                   </div>
               </div>
           </div>
