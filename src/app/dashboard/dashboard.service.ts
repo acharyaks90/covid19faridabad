@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({providedIn:'root'})
 
@@ -12,7 +13,8 @@ export class DashboardService {
   confirmed = 0;
   deceased = 0;
   lastUpdate = 0;
-  fbd_data:any;
+  fbd_data = [];
+  coronaData: BehaviorSubject<any> = new BehaviorSubject([])
     constructor(private httpReq : HttpClient ){
         
     }
@@ -31,7 +33,8 @@ export class DashboardService {
           this.confirmed = last.confirmed;
           this.deceased = last.deceased;
           this.lastUpdate = last.date;
-        this.fbd_data=   this.fbd_data.reverse() 
+          this.fbd_data   =   this.fbd_data.reverse() ;
+          this.coronaData.next(this.fbd_data);
         },err=>{
     
         })

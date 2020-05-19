@@ -12,6 +12,9 @@ export class TableListComponent implements OnInit {
   constructor(public dashBoardService : DashboardService) { }
 
   ngOnInit() {
+    if(this.dashBoardService.fbd_data.length==0){
+      this.dashBoardService.getCovidData();
+    }
   }
 
 }
