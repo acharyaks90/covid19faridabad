@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
 
   
 
-
+   
 
 
 
@@ -132,9 +132,13 @@ export class DashboardComponent implements OnInit {
     _data = _data.reverse();
     let _labels = [];
     let _series = [];
+    let _recoverSeries=[]
+    let _deathSeries = [];
     _data.map(res=>{
       _labels.push(res.date);
       _series.push(res.active)
+      _recoverSeries.push(res.recovered)
+      _deathSeries.push(res.deceased)
     }) 
     const dataRecentCoronaChart: any = {
       labels: [..._labels],
@@ -156,6 +160,55 @@ export class DashboardComponent implements OnInit {
   var recentCoronaChartChart = new Chartist.Line('#recentCoronaChart', dataRecentCoronaChart, optionsRecentCoronaChart);
 
   this.startAnimationForLineChart(recentCoronaChartChart);
+
+    /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
+    let minRecovered = Math.min(..._recoverSeries);
+    let maxRecovered = Math.max(..._recoverSeries)+5;
+    const dataCompletedTasksChart: any = {
+      labels: [..._labels],
+      series: [
+          [..._recoverSeries]
+      ]
+  };
+
+ const optionsCompletedTasksChart: any = {
+      lineSmooth: Chartist.Interpolation.cardinal({
+          tension: 0
+      }),
+      low: minRecovered,
+      high: maxRecovered, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+      chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
+  }
+
+  var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+
+  // start animation for the Completed Tasks Chart - Line Chart
+  this.startAnimationForLineChart(completedTasksChart);
+
+
+   /* ----------==========     Death Chart initialization    ==========---------- */
+   let minDeath = Math.min(..._deathSeries);
+   let maxDeath = Math.max(..._deathSeries)+5;
+   const dataDeathChart: any = {
+     labels: [..._labels],
+     series: [
+         [..._deathSeries]
+     ]
+ };
+
+const optionsDeathCaseChart: any = {
+     lineSmooth: Chartist.Interpolation.cardinal({
+         tension: 0
+     }),
+     low: minDeath,
+     high: maxDeath, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+     chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
+ }
+
+ let deathChart = new Chartist.Line('#deathChart', dataDeathChart, optionsDeathCaseChart);
+
+ // start animation for the Completed Tasks Chart - Line Chart
+ this.startAnimationForLineChart(deathChart);
   }
 
   ngOnDestroy(){
